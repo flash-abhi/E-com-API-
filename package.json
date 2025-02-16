@@ -1,0 +1,18 @@
+{
+  "name": "e-com-api",
+  "version": "1.0.0",
+  "description": "In this API project we will built *product Management API *User Management API *Cart Management API *Order Management API",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
