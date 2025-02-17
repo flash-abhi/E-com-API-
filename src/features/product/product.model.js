@@ -8,8 +8,17 @@ export default  class ProductModel{
         this.price = price
         this.sizes = sizes
     }
-    static GetALL(){
+    static getALL(){
         return products;
+    }
+    static get(id){
+        const product = products.find(p => p.id == id)
+        return product
+    }
+    static AddProduct(product){
+        product.id = products.length+1;
+        products.push(product)
+        return product
     }
 }
 
