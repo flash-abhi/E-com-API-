@@ -15,22 +15,29 @@ export default class ProductController{
             sizes: sizes.split(','),
             imageUrl :req.file.filename
         };
-        const createdRecord = ProductModel.AddProduct(newProduct)
-        res.status(201).send(createdRecord)
+        const createdRecord = ProductModel.AddProduct(newProduct);
+        res.status(201).send(createdRecord);
     }
     rateProduct(req,res){
 
     }
     getOneProduct(req,res){
-        const id = req.params.id
-        const product = ProductModel.get(id)
+        const id = req.params.id;
+        const product = ProductModel.get(id);
         if(!product){
-            res.status(404).send("Product not found")
+            res.status(404).send("Product not found");
         }
         else{
-            res.status(200).send(product)
+            res.status(200).send(product);
         }
         
+    }
+    filterProducts(req,res){
+        const minPrice = parseFloat(req.query.minPrice);
+        const maxPrice = parseFloat(req.query.maxPrice);
+        const category = req.query.category;
+        const result = ProductModel.filter(minPrice,maxPrice,category);
+        res.status(200).send(result);
     }
 
 }

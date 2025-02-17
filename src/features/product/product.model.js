@@ -20,31 +20,42 @@ export default  class ProductModel{
         products.push(product)
         return product
     }
+    static filter(minPrice, maxPrice, category){
+        const result = products.filter(product => {
+            return (
+                (!minPrice || product.price>=minPrice) && 
+                (!maxPrice || product.price<= maxPrice) && 
+                (!category ||product.category == category)
+            );
+        });
+        return result;
+    }
 }
 
 const products = [
     new ProductModel(
         1,
-        "Lenovo Laptop",
+        "Product 1",
         "Lenovo ThinkPad gives fast performance at an affordable price. Laptop Ideal for professionals/students needing best-in-class, slim and light laptops. It's powered with Intel Core i5 8250U 1.6 GHz upto 3.4 GHz with Intel Turbo Boost, 16 GB DDR4 RAM along with 512 GB SSD Storage which enhances the overall performance of the machine and 3 MB cache.",
         "https://m.media-amazon.com/images/I/51nM5vzFmnL.AC_SX500.jpg",
-        "category 1",
+        "category1",
         19.99,
     ),
     new ProductModel(
         2,
         "Product 2",
         "description 2",
-        "https://m.media-amazon.com/images/I/41f7sNC+WpL.AC_SX250.jpg",""
-        ,1139.99
+        "https://m.media-amazon.com/images/I/41f7sNC+WpL.AC_SX250.jpg",
+        "category2",
+        29.99
     ),
     new ProductModel(
         3,
         "Product 3",
         "description 3",
         "https://m.media-amazon.com/images/I/81iK-qtJbcL._AC_UL480_FMwebp_QL65_.jpg",
-        "category 3",
-        99.9,
+        "category3",
+        39.9,
         ["M","L","XL","XXL"]
     )
 ]
