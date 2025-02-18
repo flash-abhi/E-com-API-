@@ -1,11 +1,12 @@
 import express from "express"
 import productRouter from "./src/features/product/product.routes.js"
+import {userRouter} from "./src/features/user/user.routes.js"
 import bodyParser from "body-parser"
 const app = express()
 // for all requests related to product, redirect to product routes.
 app.use(bodyParser.json())
 app.use("/api/products",productRouter)
-
+app.use("/api/users",userRouter)
 app.get('/',(req,res)=>{
     res.send("welcome to api")
 })
