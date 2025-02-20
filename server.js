@@ -2,11 +2,11 @@ import express from "express"
 import productRouter from "./src/features/product/product.routes.js"
 import {userRouter} from "./src/features/user/user.routes.js"
 import bodyParser from "body-parser"
-import basicAuthorizer from "./src/middlewares/basicAuth.middleware.js"
+import jwtAuth from "./src/middlewares/jwt.middleware.js"
 const app = express()
 // for all requests related to product, redirect to product routes.
 app.use(bodyParser.json())
-app.use("/api/products",basicAuthorizer,productRouter)
+app.use("/api/products",jwtAuth,productRouter)
 app.use("/api/users",userRouter)
 app.get('/',(req,res)=>{
     res.send("welcome to api")

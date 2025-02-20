@@ -1,4 +1,5 @@
 import { UserModel } from "./user.model.js";
+import jwt from "jsonwebtoken"
 export class UserController{
     signup(req,res){
         const {name,email,password,type} = req.body;
@@ -11,8 +12,13 @@ export class UserController{
         if(!result){
             res.status(400).send({status:"failed", msg:"invalid user details"});
         }else{
-            return res.send({status:"success" ,msg:"Login Successful"});
-        }
+            // 1. create a jwt token 
+            const token = jwt.sign({UserId:result.id,email:result.email},"mMyWDpQd5eK5rTd0Qkz6OT4r6YxCaLyA",{
+                expiresIn:"2hr"
+            });
+            // 2. send token
 
+            return res.status(200).send(token);
+        }
     }
 }
