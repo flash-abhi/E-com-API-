@@ -14,10 +14,9 @@ export class UserController{
         }else{
             // 1. create a jwt token 
             const token = jwt.sign({UserId:result.id,email:result.email},"mMyWDpQd5eK5rTd0Qkz6OT4r6YxCaLyA",{
-                expiresIn:"2hr"
+                expiresIn:"2h"
             });
             // 2. send token
-
             return res.status(200).send(token);
         }
     }
