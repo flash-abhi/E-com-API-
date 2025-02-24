@@ -15,7 +15,7 @@ const jwtAuth = (req,res,next)=>{
     try{
     const payload = jwt.verify(token, "mMyWDpQd5eK5rTd0Qkz6OT4r6YxCaLyA");
     req.userId = payload.UserId;
-    console.log(payload);
+    // console.log(payload);
     }catch(err){
      // 4. call next middleware.
         return res.status(401).send("Unauthorized");

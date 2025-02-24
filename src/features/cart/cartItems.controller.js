@@ -17,4 +17,13 @@ export class CartItemController{
         const cartItems = CartItemModel.getAll(userId);
         return res.status(200).send(cartItems);
     }
+    static delete(req,res){
+        const userId = req.userId;
+        const cartItemId = req.params.id;
+        const err = CartItemModel.deleteItems(cartItemId,userId);
+        if(err){
+            return res.status(404).send(err);
+        }
+        res.status(200).send("Item is removed from the cart");
+    }
 }

@@ -21,6 +21,14 @@ export class CartItemModel{
         cartItem.id = cartItems.length+1;
         cartItems.push(cartItem);
     }
+    static deleteItems(cartItemId , userId){
+        // console.log(`${cartItemId} ${userId}`);
+      const index = cartItems.findIndex(i => i.id == cartItemId && i.userId == userId);
+      if(index == -1){
+        return "Item not found";
+      }
+        cartItems.splice(index,1);
+    }
     static getAll(userId){
         return cartItems.filter(i => i.userId == userId);
     }
