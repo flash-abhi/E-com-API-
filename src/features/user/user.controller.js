@@ -10,7 +10,7 @@ export class UserController{
         const {email,password} = req.body;
         const result = UserModel.signIn(email,password);
         if(!result){
-            res.status(400).send({status:"failed", msg:"invalid user details"});
+            res.status(400).send({status:"failed", msg:"Incorrect Credentials"});
         }else{
             // 1. create a jwt token 
             const token = jwt.sign({UserId:result.id,email:result.email},"mMyWDpQd5eK5rTd0Qkz6OT4r6YxCaLyA",{
