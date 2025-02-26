@@ -35,6 +35,51 @@
           }
         }
       }
+    },"/api/products/add": {
+      "post": {
+        "tags": ["Products"],
+        "summary": "Add Products",
+        "description": "User can add the Product",
+        "requestBody": {
+          "required":"true",
+          "description": "Add Product details",
+          "content": {
+            "multipart/form-data":{
+                "schema":{
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "string"
+                      },
+                      "sizes":{
+                        "type": "string"
+                      },
+                      "imageUrl":{
+                        "type": "string",
+                        "format": "binary"
+                      }
+                    }
+                }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully added"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
     },
     "/api/users/signin": {
       "post": {
