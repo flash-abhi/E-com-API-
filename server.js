@@ -9,6 +9,17 @@ import apiDocs from "./swagger.json" with { type: "json" };
 import cors from "cors";
 const app = express();
 // for all requests related to product, redirect to product routes.
+// CORS Policy configuration.
+// app.use(cors());
+ app.use((req,res,next)=>{
+    res.header("Access-Control-Allow-Origin","*");
+    res.header("Access-Control-Allow-Headers", "*");
+    // return OK for preflight request.
+    if(req.method == "OPTIONS"){
+        return res.sendStatus(200);
+    }
+    next();
+ })
 app.use(bodyParser.json());
 app.use("/api-docs",swagger.serve,swagger.setup(apiDocs));
 app.use("/api/products",jwtAuth,productRouter);
@@ -20,19 +31,8 @@ app.get('/',(req,res)=>{
 app.use((req,res)=>{
     res.status(404).send("API Not Found Please check our documentation for more information at localhost:4000/api-docs");
 })
-// CORS Policy configuration.
-app.use(cors());
 
 
-//  app.use((req,res,next)=>{
-//     res.header("Access-Control-Allow-Origin","http://localhost:4000");
-//     res.header("Access-Control-Allow-Headers", "*");
-//     // return OK for preflight request.
-//     if(req.method == "OPTIONS"){
-//         return res.sendStatus(200);
-//     }
-//     next();
-//  })
-app.listen("4000",()=>{
+app.listen(4000,()=>{
     console.log("server is listening on port : 4000");
 })
