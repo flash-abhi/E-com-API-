@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import jwtAuth from "./src/middlewares/jwt.middleware.js";
 import apiDocs from "./swagger.json" with { type: "json" };
 import cors from "cors";
+import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 const app = express();
 // for all requests related to product, redirect to product routes.
 // CORS Policy configuration.
@@ -20,6 +21,7 @@ const app = express();
     }
     next();
  })
+ app.use(loggerMiddleware);
 app.use(bodyParser.json());
 app.use("/api-docs",swagger.serve,swagger.setup(apiDocs));
 app.use("/api/products",jwtAuth,productRouter);
