@@ -1,10 +1,25 @@
+import { ApplicationError } from "../../Error-Handling/application-error.js";
 import { UserModel } from "./user.model.js";
 import jwt from "jsonwebtoken"
+import UserRepository from "./user.repository.js";
 export class UserController{
-    signup(req,res){
+    constructor(){
+        this.userRepository = new UserRepository();
+    }
+    async signup(req,res){
         const {name,email,password,type} = req.body;
-        const user = UserModel.signUp(name,email,password,type);
+        const newUser = new UserModel(
+            name,
+            email,
+            password,
+            type
+        )
+        try{
+        const user = await this.userRepository.signUp(newUser);
         res.status(201).send({status:"success", user:user})
+        }catch(err){
+            throw new ApplicationError("Something Went wrong !!" , 500);
+        }
     }
     singin(req,res){
         const {email,password} = req.body;

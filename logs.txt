@@ -1,0 +1,6 @@
+{"level":"info","message":"//api/users/signup - undefined","service":"user-service"}
+{"level":"info","message":"//api/users/signup - undefined","service":"user-service"}
+{"level":"info","message":"//api/users/signup - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/signup - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/signup - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/signup - undefined","service":"user-service"}

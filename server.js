@@ -9,7 +9,7 @@ import apiDocs from "./swagger.json" with { type: "json" };
 import cors from "cors";
 import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 import { ApplicationError } from "./src/Error-Handling/application-error.js";
-import connectToDB from "./src/config/mongoDB.js";
+import {connectToDB} from "./src/config/mongoDB.js";
 const app = express();
 // for all requests related to product, redirect to product routes.
 // CORS Policy configuration.
