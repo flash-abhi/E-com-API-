@@ -9,11 +9,6 @@ export class UserModel{
         this.password = password
         this.type = type
     }
-    
-    static signIn(email,password){
-        const user = users.find(u => u.email == email && u.password == password);
-        return user;
-    }
     static getAll(){
         return users;
     }

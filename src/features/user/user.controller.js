@@ -21,9 +21,10 @@ export class UserController{
             throw new ApplicationError("Something Went wrong !!" , 500);
         }
     }
-    singin(req,res){
+    async signin(req,res){
+        try{
         const {email,password} = req.body;
-        const result = UserModel.signIn(email,password);
+        const result = await this.userRepository.signIn(email,password);
         if(!result){
             res.status(400).send({status:"failed", msg:"Incorrect Credentials"});
         }else{
@@ -33,6 +34,9 @@ export class UserController{
             });
             // 2. send token
             return res.status(200).send(token);
+        }
+        }catch(err){
+            console.log(err);
         }
     }
 }

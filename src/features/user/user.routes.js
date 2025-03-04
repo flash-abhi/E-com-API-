@@ -5,5 +5,7 @@ const usercontroller = new UserController();
 userRouter.post("/signup",(req,res)=>{
     usercontroller.signup(req,res)
 })
-userRouter.post("/signin",usercontroller.singin)
+userRouter.post("/signin",(req,res)=>{
+    usercontroller.signin(req,res)
+})
 
