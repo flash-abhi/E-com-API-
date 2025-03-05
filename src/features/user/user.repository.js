@@ -17,7 +17,7 @@ class UserRepository{
             throw new ApplicationError("Something Went Wrong",500);
         }
     }
-    async signIn(email, password){
+    async findByEmail(email){
         try{
         // 1. get the db
         const db = getDb();
@@ -26,7 +26,7 @@ class UserRepository{
         const collection = db.collection('users');
 
         // 3. Insert the Document.
-        return await collection.findOne({email,password})
+        return await collection.findOne({email})
         }catch(err){
             throw new ApplicationError("Something Went Wrong",500);
         }
