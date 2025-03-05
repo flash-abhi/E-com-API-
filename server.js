@@ -1,3 +1,4 @@
+import "dotenv/config"
 import express from "express";
 import swagger from "swagger-ui-express";
 import productRouter from "./src/features/product/product.routes.js";
@@ -11,6 +12,7 @@ import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 import { ApplicationError } from "./src/Error-Handling/application-error.js";
 import {connectToDB} from "./src/config/mongoDB.js";
 const app = express();
+
 // for all requests related to product, redirect to product routes.
 // CORS Policy configuration.
 app.use(cors());

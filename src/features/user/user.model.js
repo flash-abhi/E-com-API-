@@ -1,6 +1,3 @@
-import { getDb } from "../../config/mongoDB.js";
-import { ApplicationError } from "../../Error-Handling/application-error.js";
-
 export class UserModel{
     constructor(name,email,password,type,id){
         this._id = id;
