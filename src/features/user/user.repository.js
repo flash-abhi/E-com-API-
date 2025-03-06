@@ -2,13 +2,16 @@ import { getDb } from "../../config/mongoDB.js";
 import { ApplicationError } from "../../Error-Handling/application-error.js";
 
 class UserRepository{
+    constructor(){
+        this.collection = "users";
+    }
     async signUp(newUser){
         try{
         // 1. get the db
         const db = getDb();
 
         // 2. get the collection 
-        const collection = db.collection('users');
+        const collection = db.collection(this.collection);
 
         // 3. Insert the Document.
         await collection.insertOne(newUser)
@@ -23,7 +26,7 @@ class UserRepository{
         const db = getDb();
 
         // 2. get the collection 
-        const collection = db.collection('users');
+        const collection = db.collection(this.collection);
 
         // 3. Insert the Document.
         return await collection.findOne({email})
