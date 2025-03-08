@@ -1,29 +1,43 @@
 import { CartItemModel } from "./cartItems.model.js";
+import CartItemsRepository from "./cartItems.repository.js";
 
 export class CartItemController{
-    static add(req,res){
+    constructor(){
+        this.cartItemRepository = new CartItemsRepository();
+    }
+    async add(req,res){
+       try{
         const {productId,quantity} = req.query;
         const userId = req.userId;
         console.log(userId);
-        const err = CartItemModel.addItem(productId,userId,quantity);
-        console.log(err);
-        if(err){
-           return res.status(400).send("Cannot Update The Cart");
-        }
+        await this.cartItemRepository.addItem(productId,userId,quantity);
         res.status(201).send("Cart Is Updated");
+       }catch(err){
+        console.log(err);
+        return res.status(400).send("Something went wrong!!");
+       }
     }
-    static getCartItems(req,res){
-        const userId = req.userId;
-        const cartItems = CartItemModel.getAll(userId);
-        return res.status(200).send(cartItems);
+    async getCartItems(req,res){
+        try{
+            const userId = req.userId;
+            const cartItems = await this.cartItemRepository.getAll(userId);
+            return res.status(200).send(cartItems);
+        }catch(err){
+            console.log(err);
+            return res.status(400).send("Something Went Wrong!!!");
+        }
     }
-    static delete(req,res){
-        const userId = req.userId;
+    async delete(req,res){
+        try{
+            const userId = req.userId;
         const cartItemId = req.params.id;
-        const err = CartItemModel.deleteItems(cartItemId,userId);
-        if(err){
-            return res.status(404).send(err);
+        const isDeleted = await this.cartItemRepository.deleteItems(cartItemId,userId);
+        if(!isDeleted){
+            return res.status(404).send("Item is not Found");
         }
         res.status(200).send("Item is removed from the cart");
+        }catch(err){
+            console.log(err);
+        }
     }
 }

@@ -8,19 +8,7 @@ export class CartItemModel{
         this.quantity = quantity;
         this.id = id;
     }
-    static addItem(productId,userId,quantity){
-        const user = UserModel.getAll().find(u => u.id == userId);
-        const product = ProductModel.getALL().find(p => p.id == productId);
-        if( !user ){
-            return "User Not Found";
-        }
-        if(!product){
-            return "Product Not Found";
-        }
-        const cartItem = new CartItemModel(productId,userId,quantity);
-        cartItem.id = cartItems.length+1;
-        cartItems.push(cartItem);
-    }
+
     static deleteItems(cartItemId , userId){
         // console.log(`${cartItemId} ${userId}`);
       const index = cartItems.findIndex(i => i.id == cartItemId && i.userId == userId);
@@ -28,9 +16,6 @@ export class CartItemModel{
         return "Item not found";
       }
         cartItems.splice(index,1);
-    }
-    static getAll(userId){
-        return cartItems.filter(i => i.userId == userId);
     }
 }
 
