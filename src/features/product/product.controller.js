@@ -1,3 +1,4 @@
+import { ApplicationError } from "../../Error-Handling/application-error.js";
 import ProductModel from "./product.model.js";
 import ProductRepository from "./product.repository.js";
 export default class ProductController{
@@ -18,11 +19,12 @@ export default class ProductController{
         // console.log("Post request send");
         // res.status(200).send("Post request received");
         try{
-        const {name, price , sizes} = req.body;
+        const {name, price , sizes,category} = req.body;
         const newProduct = {
             name,
             price: parseFloat(price),
             sizes: sizes.split(','),
+            category,
             imageUrl :req.file.filename
         };
         const createdRecord = await this.productRepository.add(newProduct);
@@ -72,6 +74,16 @@ export default class ProductController{
         console.log(err);
         throw new ApplicationError("Something went wrong with database...",500);
        }
+    }
+
+    async averagePrice(req,res){
+        try{
+            const result = await this.productRepository.averageProductPrice();
+            return res.status(200).send(result);
+        }catch(err){
+            console.log(err);
+            throw new ApplicationError("Something went wrong with database...",500);
+        }
     }
 
 }
