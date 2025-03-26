@@ -1,6 +1,23 @@
-ProductController
-GetProducts
-Add a Product
-Get one Product
-Rate Product.
-filter
+// ProductController
+// GetProducts
+// Add a Product
+// Get one Product
+// Rate Product.
+// filter
+
+
+
+// db.products.aggregate([
+//     {
+//         $unwind: "$ratings"
+//     },
+//     {
+//         $group:{_id:"$name",averageRating: { $avg: { $toDouble: "$ratings.rating" } }}
+//     }
+// ])
+
+db.products.aggregate([
+    {
+        $project:{name:1,countRating:{$cond:{if:{$isArray:"$ratings"},then:{$size:"$ratings"},else:0}}}
+    }
+])

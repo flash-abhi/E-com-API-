@@ -4,6 +4,7 @@ import swagger from "swagger-ui-express";
 import productRouter from "./src/features/product/product.routes.js";
 import {userRouter} from "./src/features/user/user.routes.js";
 import cartRouter from "./src/features/cart/cartItems.routes.js";
+import orderRouter from "./src/features/order/order.routes.js";
 import bodyParser from "body-parser";
 import jwtAuth from "./src/middlewares/jwt.middleware.js";
 import apiDocs from "./swagger.json" with { type: "json" };
@@ -31,6 +32,7 @@ app.use("/api-docs",swagger.serve,swagger.setup(apiDocs));
 app.use("/api/products",jwtAuth,productRouter);
 app.use("/api/users",userRouter);
 app.use("/api/carts",jwtAuth,cartRouter);
+app.use("/api/orders",jwtAuth,orderRouter);
 app.get('/',(req,res)=>{
     res.send("welcome to api");
 })

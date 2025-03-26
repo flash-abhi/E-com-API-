@@ -31,6 +31,7 @@ class UserRepository{
         // 3. Insert the Document.
         return await collection.findOne({email})
         }catch(err){
+            console.log(err);
             throw new ApplicationError("Something Went Wrong",500);
         }
     }
