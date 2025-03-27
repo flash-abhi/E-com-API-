@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import "dotenv/config";
 let client;
 export const connectToDB = ()=>{
     MongoClient.connect(process.env.DB_URL)

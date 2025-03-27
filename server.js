@@ -11,7 +11,8 @@ import apiDocs from "./swagger.json" with { type: "json" };
 import cors from "cors";
 import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 import { ApplicationError } from "./src/Error-Handling/application-error.js";
-import {connectToDB} from "./src/config/mongoDB.js";
+// import {connectToDB} from "./src/config/mongoDB.js";
+import { connectUsingMongoose } from "./src/config/mongooseConfig.js";
 const app = express();
 
 // for all requests related to product, redirect to product routes.
@@ -49,5 +50,6 @@ app.use((err,req,res,next)=>{
 
 app.listen(4000,()=>{
     console.log("server is listening on port : 4000");
-    connectToDB();
+    // connectToDB();
+    connectUsingMongoose();
 })
