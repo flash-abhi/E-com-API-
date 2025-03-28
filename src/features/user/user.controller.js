@@ -1,7 +1,7 @@
 import { ApplicationError } from "../../Error-Handling/application-error.js";
 import { UserModel } from "./user.model.js";
 import jwt from "jsonwebtoken";
-import UserRepository from "./user.repository.js";
+import UserRepository from "./user.repository_Old.js";
 import bcrypt from "bcrypt";
 export class UserController {
   constructor() {
