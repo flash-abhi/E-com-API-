@@ -1,7 +1,7 @@
 import { ApplicationError } from "../../Error-Handling/application-error.js";
 import { UserModel } from "./user.model.js";
 import jwt from "jsonwebtoken";
-import UserRepository from "./user.repository_Old.js";
+import UserRepository from "./user.repository.js";
 import bcrypt from "bcrypt";
 export class UserController {
   constructor() {
@@ -48,6 +48,17 @@ export class UserController {
         }
       }
     } catch (err) {
+      console.log(err);
+    }
+  }
+  async resetPassword(req,res){
+    try{
+      const {newPassword} = req.body;
+      const userId = req.userId;
+      const hashPassword = await bcrypt.hash(newPassword,12);
+      await this.userRepository.resetPass(userId,hashPassword);
+      res.status(200).send("password is reset");
+    }catch(err){
       console.log(err);
     }
   }

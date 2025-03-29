@@ -88,3 +88,11 @@
 {"level":"info","message":"/api/users/signin - undefined","service":"user-service"}
 {"level":"info","message":"/api/orders/ - undefined","service":"user-service"}
 {"level":"info","message":"/api/orders/ - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/signin - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/resetPassword - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/resetPassword - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/resetPassword - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/resetPassword - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/signup - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/signin - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/resetPassword - undefined","service":"user-service"}

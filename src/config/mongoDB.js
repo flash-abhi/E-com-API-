@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import "dotenv/config";
+import mongoose from "mongoose";
 let client;
 export const connectToDB = ()=>{
     MongoClient.connect(process.env.DB_URL)
@@ -19,6 +20,7 @@ export const getClient = ()=>{
 export const getDb =  ()=>{
     return client.db();
 }
+
 // const createCounter = async (db)=>{
 //     const existingCounter =  await db.collection('counters').findOne({_id:'cartItemId'});
 //     if(!existingCounter){

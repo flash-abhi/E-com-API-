@@ -20,4 +20,17 @@ export default class UserRepository{
             console.log(err);
         }
     }
+    async resetPass(userId,newPassword){
+        try{
+            let user = await UserModel.findById(userId);
+            if(user){
+                user.password = newPassword;
+                await user.save();
+            }else {
+                throw new Error("User not found");
+            }
+        }catch(err){
+            console.log(err);
+        }
+    }
 }
