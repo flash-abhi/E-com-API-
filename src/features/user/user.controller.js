@@ -3,11 +3,12 @@ import { UserModel } from "./user.model.js";
 import jwt from "jsonwebtoken";
 import UserRepository from "./user.repository.js";
 import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 export class UserController {
   constructor() {
     this.userRepository = new UserRepository();
   }
-  async signup(req, res) {
+  async signup(req, res,next) {
     const { name, email, password, type } = req.body;
     // 1. Creating the hash password .
     const hashPassword = await bcrypt.hash(password, 12);
@@ -16,7 +17,8 @@ export class UserController {
       const user = await this.userRepository.signUp(newUser);
       res.status(201).send({ status: "success", user: user });
     } catch (err) {
-      throw new ApplicationError("Something Went wrong !!", 500);
+      next(err);
+      // throw new ApplicationError("Something Went wrong !!", 500);
     }
   }
   async signin(req, res) {

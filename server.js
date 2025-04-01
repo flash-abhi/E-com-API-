@@ -13,6 +13,7 @@ import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 import { ApplicationError } from "./src/Error-Handling/application-error.js";
 // import {connectToDB} from "./src/config/mongoDB.js";
 import { connectUsingMongoose } from "./src/config/mongooseConfig.js";
+import mongoose from "mongoose";
 const app = express();
 
 // for all requests related to product, redirect to product routes.
@@ -41,6 +42,8 @@ app.use((req,res)=>{
     res.status(404).send("API Not Found Please check our documentation for more information at localhost:4000/api-docs");
 })
 app.use((err,req,res,next)=>{
+    if(err instanceof mongoose.Error.ValidationError)
+        return res.status(400).send(err.message)
     if(err instanceof ApplicationError){
         return res.status(err.code).send(err.message);
     }
