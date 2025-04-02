@@ -100,3 +100,5 @@
 {"level":"info","message":"/api/users/signup - undefined","service":"user-service"}
 {"level":"info","message":"/api/users/signup - undefined","service":"user-service"}
 {"level":"info","message":"/api/users/signup - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/signin - undefined","service":"user-service"}
+{"level":"info","message":"/api/products/rating?userId=2&productId=67e395235ec6c130eb4d6c05&rating=4.4 - undefined","service":"user-service"}

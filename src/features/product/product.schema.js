@@ -6,7 +6,13 @@ export const productSchema = new mongoose.Schema({
     imageUrl:String,
     price:Number,
     category: String,
-    stock:Number
+    stock:Number,
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'review'
+        }
+    ]
 });
 
 // this.name = name
