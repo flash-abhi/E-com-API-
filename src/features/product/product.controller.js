@@ -24,8 +24,8 @@ export default class ProductController{
             name,
             price: parseFloat(price),
             sizes: sizes.split(','),
-            category,
-            imageUrl :req.file.filename
+            categories: category.split(','),
+            imageUrl :req?.file?.filename
         };
         const createdRecord = await this.productRepository.add(newProduct);
         res.status(201).send(createdRecord);
@@ -45,7 +45,6 @@ export default class ProductController{
             return res.status(400).send(err.message);
         }
         return res.status(200).send("rating added !!");
-        next()
     }
    async getOneProduct(req,res){
        try{

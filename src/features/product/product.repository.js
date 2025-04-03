@@ -4,18 +4,27 @@ import { ApplicationError } from "../../Error-Handling/application-error.js";
 import mongoose from "mongoose";
 import { productSchema } from "./product.schema.js";
 import { reviewSchema } from "./review.schema.js";
+import { categorySchema } from "./category.schema.js";
 
 const ProductModel = mongoose.model("products",productSchema);
 const ReviewModel = mongoose.model("review",reviewSchema);
+const CategoryModel = mongoose.model("category",categorySchema);
 class ProductRepository {
   constructor() {
     this.collection = "products";
   }
-  async add(newProduct) {
+  async add(productData) {
     try {
-      const db = getDb();
-      const collection = db.collection(this.collection);
-      await collection.insertOne(newProduct);
+      // 1. Add the product 
+      console.log(productData)
+      const newProduct =  new ProductModel(productData);
+      console.log(newProduct);
+      const savedProduct = await newProduct.save();
+      // 2. Update the category 
+      await CategoryModel.updateMany(
+        {_id : {$in : newProduct.categories}},
+        {$push: {products: new ObjectId(savedProduct._id)}}
+      )
       return newProduct;
     } catch (err) {
       console.log(err);
@@ -139,6 +148,10 @@ class ProductRepository {
           rating : rating
         });
        await newReview.save();
+       productToUpdate.reviews.push(newReview._id);
+      //  console.log(productToUpdate);
+       await productToUpdate.save();
+       return newReview;
       }
     }
     catch (err) {
