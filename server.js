@@ -14,6 +14,7 @@ import { ApplicationError } from "./src/Error-Handling/application-error.js";
 // import {connectToDB} from "./src/config/mongoDB.js";
 import { connectUsingMongoose } from "./src/config/mongooseConfig.js";
 import mongoose from "mongoose";
+import { likesRouter } from "./src/features/likes/likes.routes.js";
 const app = express();
 
 // for all requests related to product, redirect to product routes.
@@ -35,6 +36,7 @@ app.use("/api/products",jwtAuth,productRouter);
 app.use("/api/users",userRouter);
 app.use("/api/carts",jwtAuth,cartRouter);
 app.use("/api/orders",jwtAuth,orderRouter);
+app.use("/api/likes",jwtAuth,likesRouter);
 app.get('/',(req,res)=>{
     res.send("welcome to api");
 })

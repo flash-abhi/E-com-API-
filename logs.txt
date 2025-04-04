@@ -122,3 +122,10 @@
 {"level":"info","message":"/api/products/add - undefined","service":"user-service"}
 {"level":"info","message":"/api/products/add - undefined","service":"user-service"}
 {"level":"info","message":"/api/products/add - undefined","service":"user-service"}
+{"level":"info","message":"/api/users/signin - undefined","service":"user-service"}
+{"level":"info","message":"/api/likes/product - undefined","service":"user-service"}
+{"level":"info","message":"/api/likes/product - undefined","service":"user-service"}
+{"level":"info","message":"/api/likes/product - undefined","service":"user-service"}
+{"level":"info","message":"/api/likes - undefined","service":"user-service"}
+{"level":"info","message":"/api/likes - undefined","service":"user-service"}
+{"level":"info","message":"/api/likes?id=67e394f15ec6c130eb4d6c03&type=products - undefined","service":"user-service"}
